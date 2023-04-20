@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_yasg',
     'testing',
-    'drf_yasg'
+    'accounts',
+    'subscriptions',
+    
 ]
 
 MIDDLEWARE = [
@@ -126,4 +129,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'testing.User'
+AUTH_USER_MODEL = 'accounts.User'

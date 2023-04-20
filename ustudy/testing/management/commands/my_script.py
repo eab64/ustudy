@@ -9,15 +9,19 @@ class Command(BaseCommand):
         import django
         django.setup()
 
-        from testing.models import User
-        from testing.models import DrivingCategory, Test, Question, Answer
-
+        from accounts.models import User
+        from testing.models.test import Test
+        from testing.models.driving_category import DrivingCategory
+        from testing.models.question import Question
+        from testing.models.answer import Answer
+        from testing.models.city import City
+        
         # create driving category
         driving_category = DrivingCategory.objects.create(name='A1')
-
+        city = City.objects.create(name="Алматы")
         # create admin user
         try:
-            admin_user = User.objects.create_superuser(username='admin', email='admin@example.com', password='admin')
+            admin_user = User.objects.create_superuser(username='admin', email='admin@example.com', password='admin', city=city)
         except Exception as e:
             print(e)
         # create tests

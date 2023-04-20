@@ -1,15 +1,18 @@
-from django.urls import path, include
-from rest_framework import routers
-
-
+from django.urls import path
+from accounts.views import UserViewSet
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+# from testing.urls import schema_view
 
-from .views.test_viewset import TestViewSet
-from .views.driving_category_viewset import DrivingCategoryViewSet
-from .views.test_result_viewset import TestResultViewSet
 
+
+from django.urls import include, path
+from rest_framework import routers
+from .views import UserViewSet
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -23,16 +26,9 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=[permissions.AllowAny],
 )
-
-
-router = routers.DefaultRouter()
-router.register(r'driving_categories', DrivingCategoryViewSet)
-router.register(r'tests', TestViewSet)
-router.register(r'test_passing', TestResultViewSet, basename='testing_process')
-
-
 urlpatterns = [
     path('', include(router.urls)),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
 ]
+
