@@ -9,6 +9,8 @@ from testing.models.question import Question
 from testing.models.answer import Answer
 
 from testing.serializers.test_serializer import TestSerializer
+from testing.serializers.answer_serializer import AnswerSerializer
+from testing.serializers.question_serializer import QuestionSerializer
 
 from django.shortcuts import get_object_or_404
 
@@ -34,16 +36,26 @@ class TestViewSet(viewsets.ViewSet): # TODO надо глянуть на generic
         test_id = request.query_params.get('test_id')
         test = get_object_or_404(Test, id=test_id)
         questions = test.questions.all()
+        answer_serializer = AnswerSerializer
         data = []
         for question in questions:
-            answers = [{
-                'id': answer.id, 
-                'text': answer.text, 
-                'is_correct': answer.is_correct} for answer in question.answers.all()]
-            data.append({
-                'id': question.id,
-                'text': question.text,
-                'is_multiple_choice': question.is_multiple_choice,
-                'answers': answers,
-            })
+            answers = [
+                [answer_serializer(answer).data for answer in question.answers.all()]
+            ]
+            # answers = [{
+            #     'id': answer.id,
+            #     'text': answer.text,
+            #     'is_correct': answer.is_correct} for answer in question.answers.all()]
+            data.append(
+                {"question":QuestionSerializer(question).data,
+                 "answers":answers
+                 }
+            )
+            # data.append({
+            #     'id': question.id,
+            #     'text': question.text,
+            #     'is_multiple_choice': question.is_multiple_choice,
+            #     'image':question.image if question.image else None,
+            #     'answers': answers,
+            # })
         return Response(data)
