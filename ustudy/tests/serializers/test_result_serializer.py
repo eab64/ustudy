@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from testing.models.test_result import TestResult
+from tests.models.test_result import TestResult
 from .test_serializer import TestSerializer
 
 class TestResultSerializer(serializers.ModelSerializer):
@@ -8,4 +8,4 @@ class TestResultSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = TestResult
-        fields = ['id', 'user', 'test', 'score']
+        fields = ['id', 'user', 'test', 'score', 'finished']

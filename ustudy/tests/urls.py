@@ -26,9 +26,9 @@ schema_view = get_schema_view(
 
 
 router = routers.DefaultRouter()
-router.register(r'driving_categories', DrivingCategoryViewSet)
+router.register(r'driving-categories', DrivingCategoryViewSet)
 router.register(r'tests', TestViewSet)
-router.register(r'test_passing', TestResultViewSet, basename='testing_process')
+router.register(r'test-processes', TestResultViewSet, basename='testing-process')
 
 
 urlpatterns = [

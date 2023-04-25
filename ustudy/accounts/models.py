@@ -2,7 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractUser
 
-from testing.models.city import City
+from tests.models.city import City
 
 
 class User(AbstractUser):

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from testing.models.driving_category import DrivingCategory
+from tests.models.driving_category import DrivingCategory
 
 class DrivingCategorySerializer(serializers.ModelSerializer):
     

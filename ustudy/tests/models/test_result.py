@@ -25,4 +25,5 @@ class TestResult(models.Model):
             if user_answer.answer.is_correct:
                 score +=1
         return score
+    
                 
