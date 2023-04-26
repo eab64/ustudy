@@ -1,10 +1,10 @@
 from import_export import resources
 
-from products.models import Category
-from products.models import Subscription
-from products.models import Product
-from products.models import Question
-from products.models import Variant
+from products.models.category import Category
+from products.models.subscription_mock import Subscription
+from products.models.product import Product
+from products.models.question import Question
+from products.models.variant import Variant
 
 
 

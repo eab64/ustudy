@@ -2,7 +2,10 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractUser
 
-from tests.models.city import City
+
+class City(models.Model):
+    name = models.CharField(max_length=55)
+
 
 
 class User(AbstractUser):

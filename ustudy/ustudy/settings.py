@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'import_export',
     #project
-    'tests',
     'accounts',
     'subscriptions',
     'products',

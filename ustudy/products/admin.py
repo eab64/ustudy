@@ -1,11 +1,11 @@
 from django.contrib import admin
 
 # Register your models here.
-from products.models import Subscription
-from products.models import Product
-from products.models import Category
-from products.models import Question
-from products.models import Variant
+from products.models.subscription_mock import Subscription
+from products.models.product import Product
+from products.models.category import Category
+from products.models.question import Question
+from products.models.variant import Variant
 
 from import_export.admin import ExportMixin
 from import_export.admin import ImportExportActionModelAdmin, ImportExportMixin, ImportMixin
@@ -33,23 +33,18 @@ class VariantAdmin(ImportExportMixin, ImportExportActionModelAdmin, ImportMixin)
     list_display = ('id', 'text', 'is_correct', 'question')
 
 
-# check if the Subscription model is already registered
 if not admin.site.is_registered(Subscription):
     admin.site.register(Subscription, SubscriptionAdmin)
 
-# check if the Product model is already registered
 # if not admin.site.is_registered(Product):
 admin.site.register(Product)
 
-# check if the Category model is already registered
 if not admin.site.is_registered(Category):
     admin.site.register(Category, CategoryAdmin)
 
-# check if the Question model is already registered
 if not admin.site.is_registered(Question):
     admin.site.register(Question, QuestionAdmin)
 
-# check if the Variant model is already registered
 if not admin.site.is_registered(Variant):
     admin.site.register(Variant, VariantAdmin)
 
